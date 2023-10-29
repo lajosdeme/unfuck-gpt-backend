@@ -5,12 +5,6 @@ import (
 	"time"
 )
 
-/*
-todo: schedule a cron job to pull sentiment 5 hours
-todo: get price from smart contract and analyse it
-todo: open up API for FE to query this
-*/
-
 func main() {
 	LoadConfig()
 	// 0 0 */5 * * *
