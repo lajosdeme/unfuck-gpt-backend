@@ -15,6 +15,7 @@ type ConfigInfo struct {
 	PriceDataAddr string `mapstructure:"UNFUCK_PRICE_DATA_ADDRESS"`
 	UnfuckCore    string `mapstructure:"UNFUCK_CORE_ADDRESS"`
 	Key           string `mapstructure:"KEY"`
+	Port          int    `mapstructure:"PORT"`
 }
 
 type ReportInfo struct {

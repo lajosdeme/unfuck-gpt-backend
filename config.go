@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/spf13/viper"
 )
@@ -12,6 +13,10 @@ var G Gpt
 var S Saver
 
 func LoadConfig() {
+	port, err := strconv.Atoi(os.Getenv("PORT"))
+	if err != nil {
+		fmt.Println("error getting port: ", err)
+	}
 	if os.Getenv("MODE") == "heroku" {
 		Config = ConfigInfo{
 			ApiKey:        os.Getenv("API_KEY"),
@@ -20,6 +25,7 @@ func LoadConfig() {
 			PriceDataAddr: os.Getenv("UNFUCK_PRICE_DATA_ADDRESS"),
 			UnfuckCore:    os.Getenv("UNFUCK_CORE_ADDRESS"),
 			Key:           os.Getenv("KEY"),
+			Port:          port,
 		}
 
 		G = NewGpt("http://flock.tools:8001/v1/chat/completions", "hackathon-chat")
@@ -31,7 +37,7 @@ func LoadConfig() {
 	viper.SetConfigType("env")
 
 	viper.AutomaticEnv()
-	err := viper.ReadInConfig()
+	err = viper.ReadInConfig()
 
 	if err != nil {
 		panic(fmt.Sprintf("Failed to read env file: %s", err.Error()))
