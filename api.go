@@ -10,7 +10,7 @@ import (
 )
 
 func RunRouter(r *gin.Engine) {
-	r.Run(fmt.Sprintf(":%d", 3000))
+	r.Run(fmt.Sprintf(":%d", Config.Port))
 }
 
 func ConfigRouter() *gin.Engine {
